@@ -19,15 +19,103 @@ nav a {
     text-decoration: none;
 }
 
-.product-card {
-    max-width: 800px;
+/* --- Estilos del Contenedor Global de Productos --- */
+.product-grid-container {
+    max-width: 1200px; /* Ancho máximo para el catálogo */
     margin: 40px auto;
     padding: 20px;
+    text-align: center;
+}
+
+.product-grid-container h2 {
+    color: #007bff;
+    margin-bottom: 30px;
+    font-size: 2em;
+}
+
+/* --- ESTILOS DE LA REJILLA (GRID) --- */
+.product-grid-container {
+    display: grid;
+    /* Define 3 columnas de igual ancho. 
+       Cambia '3' por '2' o '4' si quieres más/menos columnas */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px; /* Espacio entre las tarjetas de producto */
+}
+
+/* --- Estilos de la Tarjeta de Producto (Individual) --- */
+.product-card {
     background-color: white;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    display: flex;
-    gap: 30px;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: left;
+    display: flex; /* Cambiamos a flex para apilar imagen e info */
+    flex-direction: column;
     align-items: center;
+    transition: transform 0.3s;
+}
+
+.product-card:hover {
+    transform: translateY(-5px); /* Pequeño efecto al pasar el ratón */
+}
+
+.product-card img {
+    width: 100%; 
+    max-height: 200px;
+    object-fit: cover;
+    border-radius: 6px;
+    margin-bottom: 15px;
+}
+
+.product-info {
+    width: 100%;
+}
+
+.product-info h3 {
+    color: #007bff;
+    margin-top: 0;
+}
+
+.description {
+    font-size: 0.9em;
+    color: #555;
+    min-height: 50px; /* Asegura que todas las descripciones tengan altura similar */
+}
+
+.price {
+    font-size: 1.5em;
+    color: #28a745; 
+    font-weight: bold;
+    margin: 15px 0;
+}
+
+/* Estilos del Botón de WhatsApp (mantener los estilos del código anterior) */
+.whatsapp-button {
+    background-color: #25D366; 
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1em;
+    font-weight: bold;
+    display: block; /* Ocupa todo el ancho de la tarjeta */
+    text-align: center;
+    margin-top: 10px;
+    transition: background-color 0.3s;
+}
+
+.whatsapp-button:hover {
+    background-color: #1DA851;
+}
+
+/* --- Media Queries (Para que se vea bien en móviles) --- */
+/* Cuando la pantalla es pequeña (ej. un móvil), mostramos una sola columna */
+@media (max-width: 768px) {
+    .product-grid-container {
+        /* Fuerza a que solo haya una tarjeta por fila */
+        grid-template-columns: 1fr; 
+        padding: 10px;
+    }
 }
 
 .product-card img {
