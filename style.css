@@ -80,3 +80,22 @@ footer {
     color: white;
     margin-top: 50px;
 }
+/* CÓDIGO CSS (style.css) - AGREGAR AL FINAL */
+
+.whatsapp-button {
+    /* Cambiamos el estilo para reflejar la marca WhatsApp */
+    background-color: #25D366; /* Verde WhatsApp */
+    color: white;
+    padding: 15px 30px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1.2em;
+    font-weight: bold;
+    transition: background-color 0.3s;
+    display: inline-block;
+    /* Icono opcional (si usas FontAwesome o un SVG) */
+}
+
+.whatsapp-button:hover {
+    background-color: #1DA851; /* Tono más oscuro al pasar el cursor */
+}
