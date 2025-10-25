@@ -1,153 +1,143 @@
 /* ==================================== */
-/* === BASE Y ESTRUCTURA GENERAL === */
+/* === BASE Y ESTRUCTURA GENERAL (Sin Cambios) === */
 /* ==================================== */
 body {
-    font-family: 'Open Sans', Arial, sans-serif; /* Fuente más moderna */
+    font-family: 'Open Sans', Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f8f9fa; /* Fondo muy claro */
-    color: #343a40; /* Texto oscuro */
+    background-color: #f8f9fa;
+    color: #343a40;
 }
 
 header {
     background-color: #007bff;
     color: white;
-    padding: 25px 20px; /* Más padding vertical */
+    padding: 25px 20px;
     text-align: center;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sutil sombra */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 nav a {
     color: white;
     margin: 0 20px;
     text-decoration: none;
-    font-weight: 600; /* Ligeramente más grueso */
+    font-weight: 600;
     transition: color 0.3s;
 }
 
 nav a:hover {
-    color: #cce5ff; /* Tono más claro al pasar el ratón */
+    color: #cce5ff;
 }
 
 /* ==================================== */
-/* === CONTENEDOR DE PRODUCTOS (GRID) === */
+/* === CONTENEDOR DE PRODUCTOS (LISTA) === */
 /* ==================================== */
 .product-grid-container {
-    max-width: 1200px; 
-    margin: 50px auto; /* Más espacio arriba/abajo */
-    padding: 20px;
+    max-width: 1000px; /* Un poco más estrecho para el diseño de lista */
+    margin: 50px auto;
+    padding: 0 20px;
+    /* Ya no es grid, es solo un contenedor */
 }
 
 .product-grid-container h2 {
     color: #007bff;
     margin-bottom: 40px;
-    font-size: 2.5em; /* Título más grande */
+    font-size: 2.5em;
     text-align: center;
-    border-bottom: 2px solid #e9ecef; /* Separador sutil */
+    border-bottom: 2px solid #e9ecef;
     padding-bottom: 15px;
 }
 
 .product-grid {
-    /* Separamos el contenedor principal de la definición de la cuadrícula
-       para evitar duplicidad de selectores en tu código original */
-    display: grid;
-    /* Diseño Flexible: Min 280px para tarjetas más compactas en 3/4 columnas */
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px; 
+    /* No se usa CSS Grid. Las tarjetas se apilan verticalmente por defecto. */
 }
 
 /* ==================================== */
-/* === TARJETA DE PRODUCTO INDIVIDUAL === */
+/* === TARJETA DE PRODUCTO INDIVIDUAL (LISTA) === */
 /* ==================================== */
 .product-card {
-    background-color: white;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Sombra más pronunciada */
-    border: 1px solid #e9ecef; /* Borde muy sutil */
-    border-radius: 10px; /* Bordes más redondeados */
-    text-align: left;
+    /* El cambio clave: Usamos Flexbox para el diseño horizontal */
     display: flex; 
-    flex-direction: column;
-    align-items: center;
-    padding: 0; /* Quitamos padding aquí, lo ponemos en product-info */
+    flex-direction: row; /* Imagen y texto en la misma fila */
+    align-items: stretch; /* Asegura que la imagen y el texto se estiren a la misma altura */
+    
+    background-color: white;
+    border: 1px solid #dee2e6;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05); /* Sombra más sutil */
+    border-radius: 8px; 
+    margin-bottom: 30px; /* Espacio entre cada producto en la lista */
+    overflow: hidden; /* Para que la imagen quede dentro de los bordes redondeados */
     transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .product-card:hover {
-    transform: translateY(-8px); /* Efecto más notable */
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); 
+    transform: translateY(-5px); 
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); 
 }
 
 .product-card img {
-    width: 100%;
-    max-height: 220px; /* Un poco más de altura */
+    /* Define el ancho de la imagen en el modo lista (Desktop) */
+    width: 35%; 
+    min-width: 250px; /* Para que la imagen no se haga demasiado pequeña */
+    height: auto;
     object-fit: cover;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    margin-bottom: 0; /* No hay margen, pegado al info */
+    border-radius: 0;
+    margin-bottom: 0;
 }
 
 .product-info {
-    width: 100%;
-    padding: 15px 20px 25px; /* Más padding en el área de texto */
+    /* Define el ancho del área de texto y botones */
+    width: 65%;
+    padding: 25px;
     display: flex;
     flex-direction: column;
-    flex-grow: 1; /* Para empujar el botón al final */
+    justify-content: space-between; /* Distribuye el contenido verticalmente */
 }
 
 .product-info h3 {
     color: #007bff;
     margin-top: 0;
-    font-size: 1.3em;
-    min-height: 40px; /* Para títulos de 1 o 2 líneas */
+    font-size: 1.5em; /* Título más grande */
+    margin-bottom: 10px;
 }
 
 .description {
-    font-size: 0.9em;
-    color: #6c757d;
-    line-height: 1.5;
-    margin-bottom: 10px;
-    /* Eliminamos el min-height, ya que el flex-grow en .product-info
-       ayuda a alinear el botón. */
+    font-size: 1em;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    flex-grow: 1; /* Permite que la descripción ocupe el espacio disponible */
 }
 
 .price {
-    font-size: 1.8em; 
-    color: #dc3545; /* Rojo de acción para destacar el precio */
+    font-size: 2.2em; /* Precio muy grande y visible */
+    color: #dc3545;
     font-weight: bold;
-    margin: 15px 0 20px; /* Más espacio abajo del precio */
+    margin: 15px 0 20px;
 }
 
-/* ==================================== */
-/* === BOTONES (Llamada a la Acción) === */
-/* ==================================== */
-
-/* Botón de WhatsApp - Claramente visible y destacable */
 .whatsapp-button {
-    background-color: #25D366; /* Verde WhatsApp */
+    background-color: #25D366;
     color: white;
-    padding: 12px 20px;
+    padding: 15px 30px; /* Botón más grande */
     text-decoration: none;
     border-radius: 6px;
-    font-size: 1em;
+    font-size: 1.1em;
     font-weight: bold;
-    display: block; 
-    text-align: center;
-    margin-top: auto; /* IMPORTANTE: Empuja el botón al final */
+    /* IMPORTANTE: Alineamos el botón a la derecha para diseño de lista */
+    display: inline-block; 
+    align-self: flex-start; /* Alinea el botón a la izquierda/inicio de la columna */
     transition: background-color 0.3s, transform 0.2s;
-    box-shadow: 0 4px 6px rgba(37, 211, 102, 0.4); /* Sombra para destacarlo */
+    box-shadow: 0 4px 6px rgba(37, 211, 102, 0.4); 
 }
 
 .whatsapp-button:hover {
     background-color: #1DA851;
-    transform: scale(1.02); /* Pequeño "pop" al pasar el ratón */
+    transform: scale(1.02);
 }
 
-/* NOTA: Eliminé los estilos duplicados de .buy-button de tu código original, 
-   ya que el .whatsapp-button es la llamada a la acción principal. */
-
-
 /* ==================================== */
-/* === PIE DE PÁGINA === */
+/* === PIE DE PÁGINA (Sin Cambios) === */
 /* ==================================== */
 footer {
     text-align: center;
@@ -158,33 +148,33 @@ footer {
     font-size: 0.9em;
 }
 
+
 /* ==================================== */
 /* === MEDIA QUERIES (ADAPTABILIDAD) === */
 /* ==================================== */
-@media (max-width: 992px) {
-    .product-grid-container {
-        margin: 30px auto;
-    }
-}
-
-/* Cuando la pantalla es de tablet/móvil grande (ej. 768px), 
-   a veces es mejor reducir a 2 columnas para que no se vean tan apiñadas */
-@media (max-width: 768px) {
-    .product-grid {
-        /* Fuerza a 2 columnas en tablets, 1fr en móviles pequeños */
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
-        gap: 20px;
+@media (max-width: 900px) {
+    /* En tablet o móvil, volvemos al diseño de columna (imagen arriba, texto abajo) */
+    .product-card {
+        flex-direction: column; 
+        align-items: center; 
     }
 
-    .product-grid-container h2 {
-        font-size: 2em;
+    .product-card img {
+        width: 100%; /* La imagen ocupa todo el ancho */
+        min-width: 100%;
+        max-height: 250px;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
     }
-}
-
-/* Móviles pequeños - siempre 1 columna para máxima legibilidad */
-@media (max-width: 576px) {
-    .product-grid {
-        grid-template-columns: 1fr; /* Una sola columna */
-        gap: 25px;
+    
+    .product-info {
+        width: 100%; /* El contenido ocupa todo el ancho */
+        padding: 20px;
+    }
+    
+    .whatsapp-button {
+        /* Vuelve a ocupar todo el ancho en móvil para mejor usabilidad */
+        display: block; 
+        align-self: stretch; /* Hace que el botón ocupe todo el ancho */
     }
 }
