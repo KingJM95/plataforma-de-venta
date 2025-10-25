@@ -1,189 +1,190 @@
+/* ==================================== */
+/* === BASE Y ESTRUCTURA GENERAL === */
+/* ==================================== */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Open Sans', Arial, sans-serif; /* Fuente más moderna */
     margin: 0;
     padding: 0;
-    background-color: #f4f4f9;
-    color: #333;
+    background-color: #f8f9fa; /* Fondo muy claro */
+    color: #343a40; /* Texto oscuro */
 }
 
 header {
     background-color: #007bff;
     color: white;
-    padding: 20px;
+    padding: 25px 20px; /* Más padding vertical */
     text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sutil sombra */
 }
 
 nav a {
     color: white;
-    margin: 0 15px;
+    margin: 0 20px;
     text-decoration: none;
+    font-weight: 600; /* Ligeramente más grueso */
+    transition: color 0.3s;
 }
 
-/* --- Estilos del Contenedor Global de Productos --- */
+nav a:hover {
+    color: #cce5ff; /* Tono más claro al pasar el ratón */
+}
+
+/* ==================================== */
+/* === CONTENEDOR DE PRODUCTOS (GRID) === */
+/* ==================================== */
 .product-grid-container {
-    max-width: 1200px; /* Ancho máximo para el catálogo */
-    margin: 40px auto;
+    max-width: 1200px; 
+    margin: 50px auto; /* Más espacio arriba/abajo */
     padding: 20px;
-    text-align: center;
 }
 
 .product-grid-container h2 {
     color: #007bff;
-    margin-bottom: 30px;
-    font-size: 2em;
+    margin-bottom: 40px;
+    font-size: 2.5em; /* Título más grande */
+    text-align: center;
+    border-bottom: 2px solid #e9ecef; /* Separador sutil */
+    padding-bottom: 15px;
 }
 
-/* --- ESTILOS DE LA REJILLA (GRID) --- */
-.product-grid-container {
+.product-grid {
+    /* Separamos el contenedor principal de la definición de la cuadrícula
+       para evitar duplicidad de selectores en tu código original */
     display: grid;
-    /* Define 3 columnas de igual ancho. 
-       Cambia '3' por '2' o '4' si quieres más/menos columnas */
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px; /* Espacio entre las tarjetas de producto */
+    /* Diseño Flexible: Min 280px para tarjetas más compactas en 3/4 columnas */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px; 
 }
 
-/* --- Estilos de la Tarjeta de Producto (Individual) --- */
+/* ==================================== */
+/* === TARJETA DE PRODUCTO INDIVIDUAL === */
+/* ==================================== */
 .product-card {
     background-color: white;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    border-radius: 8px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Sombra más pronunciada */
+    border: 1px solid #e9ecef; /* Borde muy sutil */
+    border-radius: 10px; /* Bordes más redondeados */
     text-align: left;
-    display: flex; /* Cambiamos a flex para apilar imagen e info */
+    display: flex; 
     flex-direction: column;
     align-items: center;
-    transition: transform 0.3s;
+    padding: 0; /* Quitamos padding aquí, lo ponemos en product-info */
+    transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .product-card:hover {
-    transform: translateY(-5px); /* Pequeño efecto al pasar el ratón */
+    transform: translateY(-8px); /* Efecto más notable */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); 
 }
 
 .product-card img {
-    width: 100%; 
-    max-height: 200px;
+    width: 100%;
+    max-height: 220px; /* Un poco más de altura */
     object-fit: cover;
-    border-radius: 6px;
-    margin-bottom: 15px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    margin-bottom: 0; /* No hay margen, pegado al info */
 }
 
 .product-info {
     width: 100%;
+    padding: 15px 20px 25px; /* Más padding en el área de texto */
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Para empujar el botón al final */
 }
 
 .product-info h3 {
     color: #007bff;
     margin-top: 0;
+    font-size: 1.3em;
+    min-height: 40px; /* Para títulos de 1 o 2 líneas */
 }
 
 .description {
     font-size: 0.9em;
-    color: #555;
-    min-height: 50px; /* Asegura que todas las descripciones tengan altura similar */
+    color: #6c757d;
+    line-height: 1.5;
+    margin-bottom: 10px;
+    /* Eliminamos el min-height, ya que el flex-grow en .product-info
+       ayuda a alinear el botón. */
 }
 
 .price {
-    font-size: 1.5em;
-    color: #28a745; 
+    font-size: 1.8em; 
+    color: #dc3545; /* Rojo de acción para destacar el precio */
     font-weight: bold;
-    margin: 15px 0;
+    margin: 15px 0 20px; /* Más espacio abajo del precio */
 }
 
-/* Estilos del Botón de WhatsApp (mantener los estilos del código anterior) */
+/* ==================================== */
+/* === BOTONES (Llamada a la Acción) === */
+/* ==================================== */
+
+/* Botón de WhatsApp - Claramente visible y destacable */
 .whatsapp-button {
-    background-color: #25D366; 
+    background-color: #25D366; /* Verde WhatsApp */
     color: white;
-    padding: 10px 20px;
+    padding: 12px 20px;
     text-decoration: none;
-    border-radius: 5px;
+    border-radius: 6px;
     font-size: 1em;
     font-weight: bold;
-    display: block; /* Ocupa todo el ancho de la tarjeta */
+    display: block; 
     text-align: center;
-    margin-top: 10px;
-    transition: background-color 0.3s;
+    margin-top: auto; /* IMPORTANTE: Empuja el botón al final */
+    transition: background-color 0.3s, transform 0.2s;
+    box-shadow: 0 4px 6px rgba(37, 211, 102, 0.4); /* Sombra para destacarlo */
 }
 
 .whatsapp-button:hover {
     background-color: #1DA851;
+    transform: scale(1.02); /* Pequeño "pop" al pasar el ratón */
 }
 
-/* --- Media Queries (Para que se vea bien en móviles) --- */
-/* Cuando la pantalla es pequeña (ej. un móvil), mostramos una sola columna */
-@media (max-width: 768px) {
+/* NOTA: Eliminé los estilos duplicados de .buy-button de tu código original, 
+   ya que el .whatsapp-button es la llamada a la acción principal. */
+
+
+/* ==================================== */
+/* === PIE DE PÁGINA === */
+/* ==================================== */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #343a40;
+    color: white;
+    margin-top: 60px;
+    font-size: 0.9em;
+}
+
+/* ==================================== */
+/* === MEDIA QUERIES (ADAPTABILIDAD) === */
+/* ==================================== */
+@media (max-width: 992px) {
     .product-grid-container {
-        /* Fuerza a que solo haya una tarjeta por fila */
-        grid-template-columns: 1fr; 
-        padding: 10px;
+        margin: 30px auto;
     }
 }
 
-.product-card img {
-    width: 40%;
-    max-width: 300px;
-    height: auto;
-    border-radius: 8px;
+/* Cuando la pantalla es de tablet/móvil grande (ej. 768px), 
+   a veces es mejor reducir a 2 columnas para que no se vean tan apiñadas */
+@media (max-width: 768px) {
+    .product-grid {
+        /* Fuerza a 2 columnas en tablets, 1fr en móviles pequeños */
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+        gap: 20px;
+    }
+
+    .product-grid-container h2 {
+        font-size: 2em;
+    }
 }
 
-.product-info {
-    width: 60%;
-}
-
-.product-info h2 {
-    color: #007bff;
-}
-
-.description {
-    line-height: 1.6;
-    margin-bottom: 20px;
-}
-
-.price {
-    font-size: 1.8em;
-    color: #28a745; /* Verde para el precio */
-    font-weight: bold;
-    margin-bottom: 30px;
-}
-
-.buy-button {
-    background-color: #ff6f61; /* Color de acción llamativo */
-    color: white;
-    padding: 15px 30px;
-    text-decoration: none;
-    border-radius: 5px;
-    font-size: 1.2em;
-    font-weight: bold;
-    transition: background-color 0.3s;
-    display: inline-block; /* Para que funcione el padding */
-}
-
-.buy-button:hover {
-    background-color: #e55c4e;
-}
-
-footer {
-    text-align: center;
-    padding: 15px;
-    background-color: #333;
-    color: white;
-    margin-top: 50px;
-}
-/* CÓDIGO CSS (style.css) - AGREGAR AL FINAL */
-
-.whatsapp-button {
-    /* Cambiamos el estilo para reflejar la marca WhatsApp */
-    background-color: #25D366; /* Verde WhatsApp */
-    color: white;
-    padding: 15px 30px;
-    text-decoration: none;
-    border-radius: 5px;
-    font-size: 1.2em;
-    font-weight: bold;
-    transition: background-color 0.3s;
-    display: inline-block;
-    /* Icono opcional (si usas FontAwesome o un SVG) */
-}
-
-.whatsapp-button:hover {
-    background-color: #1DA851; /* Tono más oscuro al pasar el cursor */
+/* Móviles pequeños - siempre 1 columna para máxima legibilidad */
+@media (max-width: 576px) {
+    .product-grid {
+        grid-template-columns: 1fr; /* Una sola columna */
+        gap: 25px;
+    }
 }
